@@ -66,7 +66,7 @@ const MessageInput = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-white/10 p-4 bg-black/20">
+    <form onSubmit={handleSubmit} className="border-t border-white/10 p-4 bg-black/20 fixed lg:relative bottom-16 lg:bottom-0 left-0 right-0 z-40">
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -96,7 +96,7 @@ const MessageInput = () => {
               }
             }}
             placeholder="Type a message here..."
-            className="w-full px-3 py-2 text-white placeholder-gray-400 bg-white/8 border border-white/10 rounded-xl focus:outline-none focus:bg-white/12 focus:border-white/20 text-sm transition-all"
+            className="w-full px-3 py-2 text-gray-900 placeholder-gray-500 bg-white/90 border border-white/20 rounded-xl focus:outline-none focus:bg-white focus:border-purple-500/50 text-sm transition-all"
           />
         </div>
 
