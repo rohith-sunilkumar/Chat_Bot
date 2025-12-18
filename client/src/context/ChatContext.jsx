@@ -134,7 +134,8 @@ export const ChatProvider = ({ children }) => {
         content,
         messageType,
       })
-      setMessages((prev) => [...prev, data])
+      // Don't add message to state here - it will be added via socket 'newMessage' event
+      // This prevents duplicate messages
       updateConversationLastMessage(data)
       return data
     } catch (error) {
