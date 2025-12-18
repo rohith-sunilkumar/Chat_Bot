@@ -154,7 +154,7 @@ const ChatBox = ({ onBack }) => {
   }
 
   return (
-    <div className="flex-1 flex flex-col relative glass-dark rounded-3xl overflow-hidden shadow-2xl">
+    <div className="flex-1 flex flex-col relative glass-dark lg:rounded-3xl overflow-hidden shadow-2xl">
       {/* Chat Header */}
       <div className="h-16 px-4 border-b border-white/8 flex items-center justify-between glass-dark">
         <div className="flex items-center gap-3">
