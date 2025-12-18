@@ -155,63 +155,65 @@ const ChatPage = () => {
         {activeTab === 'settings' && <SettingsView />}
       </div>
 
-      {/* Mobile Bottom Navigation */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 glass-dark border-t border-gray-200 h-16 z-50">
-        <div className="flex justify-around items-center h-full">
-          {/* Profile */}
-          <button
-            onClick={() => setActiveTab('profile')}
-            className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeTab === 'profile'
-              ? 'bg-purple-500/30 text-gray-900'
-              : 'text-gray-600'
-              }`}
-          >
-            <div className="relative">
-              {hasValidAvatar(user?.avatar) ? (
-                <img
-                  src={user.avatar}
-                  alt={user?.username}
-                  className="h-6 w-6 rounded-full ring-2 ring-purple-200"
-                />
-              ) : (
-                <div className={`avatar-default ${getAvatarColor(user?.username)} h-6 w-6 text-xs ring-2 ring-purple-200`}>
-                  {getInitials(user?.username)}
-                </div>
-              )}
-              <div className="absolute -bottom-0.5 -right-0.5 h-2 w-2 bg-green-500 border border-white rounded-full"></div>
-            </div>
-            <span className="text-xs font-medium">Profile</span>
-          </button>
+      {/* Mobile Bottom Navigation - Hidden when in active chat */}
+      {!showMobileChat && (
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 glass-dark border-t border-gray-200 h-16 z-50">
+          <div className="flex justify-around items-center h-full">
+            {/* Profile */}
+            <button
+              onClick={() => setActiveTab('profile')}
+              className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeTab === 'profile'
+                ? 'bg-purple-500/30 text-gray-900'
+                : 'text-gray-600'
+                }`}
+            >
+              <div className="relative">
+                {hasValidAvatar(user?.avatar) ? (
+                  <img
+                    src={user.avatar}
+                    alt={user?.username}
+                    className="h-6 w-6 rounded-full ring-2 ring-purple-200"
+                  />
+                ) : (
+                  <div className={`avatar-default ${getAvatarColor(user?.username)} h-6 w-6 text-xs ring-2 ring-purple-200`}>
+                    {getInitials(user?.username)}
+                  </div>
+                )}
+                <div className="absolute -bottom-0.5 -right-0.5 h-2 w-2 bg-green-500 border border-white rounded-full"></div>
+              </div>
+              <span className="text-xs font-medium">Profile</span>
+            </button>
 
-          {/* Navigation Items */}
-          {navItems.map((item) => {
-            const Icon = item.icon
-            const isActive = activeTab === item.id
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${isActive
-                  ? 'bg-purple-500/30 text-gray-900'
-                  : 'text-gray-600'
-                  }`}
-              >
-                <Icon className="h-6 w-6" />
-                <span className="text-xs font-medium">{item.label}</span>
-              </button>
-            )
-          })}
+            {/* Navigation Items */}
+            {navItems.map((item) => {
+              const Icon = item.icon
+              const isActive = activeTab === item.id
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${isActive
+                    ? 'bg-purple-500/30 text-gray-900'
+                    : 'text-gray-600'
+                    }`}
+                >
+                  <Icon className="h-6 w-6" />
+                  <span className="text-xs font-medium">{item.label}</span>
+                </button>
+              )
+            })}
 
-          {/* Logout */}
-          <button
-            onClick={logout}
-            className="flex flex-col items-center gap-1 px-3 py-2 rounded-xl text-gray-600 transition-all"
-          >
-            <Power className="h-6 w-6" />
-            <span className="text-xs font-medium">Logout</span>
-          </button>
+            {/* Logout */}
+            <button
+              onClick={logout}
+              className="flex flex-col items-center gap-1 px-3 py-2 rounded-xl text-gray-600 transition-all"
+            >
+              <Power className="h-6 w-6" />
+              <span className="text-xs font-medium">Logout</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

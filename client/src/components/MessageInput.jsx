@@ -66,14 +66,14 @@ const MessageInput = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-white/10 p-4 bg-black/20 fixed lg:relative bottom-16 lg:bottom-0 left-0 right-0 z-40">
+    <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 border-t border-white/10 px-4 py-3 bg-white/95 lg:bg-black/30 backdrop-blur-xl z-40">
       <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={handleFileClick}
           className="p-2 rounded-xl transition-all hover:scale-110 hover:bg-white/10 opacity-60 hover:opacity-100"
         >
-          <Smile className="h-5 w-5 text-white" />
+          <Smile className="h-5 w-5 text-gray-600 lg:text-white" />
         </button>
 
         <input
@@ -96,7 +96,7 @@ const MessageInput = () => {
               }
             }}
             placeholder="Type a message here..."
-            className="w-full px-3 py-2 text-gray-900 placeholder-gray-500 bg-white/90 border border-white/20 rounded-xl focus:outline-none focus:bg-white focus:border-purple-500/50 text-sm transition-all"
+            className="w-full px-4 py-2.5 text-gray-900 placeholder-gray-500 bg-white lg:bg-white/90 border border-gray-200 lg:border-white/20 rounded-xl focus:outline-none focus:bg-white focus:border-purple-500/50 text-sm transition-all shadow-sm"
           />
         </div>
 
@@ -105,16 +105,16 @@ const MessageInput = () => {
           onClick={handleFileClick}
           className="p-2 rounded-xl transition-all hover:scale-110 hover:bg-white/10 opacity-60 hover:opacity-100"
         >
-          <Paperclip className="h-5 w-5 text-white" />
+          <Paperclip className="h-5 w-5 text-gray-600 lg:text-white" />
         </button>
 
         <button
           type="submit"
           disabled={!message.trim()}
-          className={`p-2 rounded-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed ${message.trim() ? 'bg-purple-500/30 hover:bg-purple-500/50' : 'bg-white/5 opacity-60'
+          className={`p-2.5 rounded-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed ${message.trim() ? 'bg-purple-500 hover:bg-purple-600 shadow-lg shadow-purple-500/30' : 'bg-gray-200 lg:bg-white/5 opacity-60'
             }`}
         >
-          <Send className="h-5 w-5 text-white" />
+          <Send className={`h-5 w-5 ${message.trim() ? 'text-white' : 'text-gray-400 lg:text-white'}`} />
         </button>
       </div>
     </form>

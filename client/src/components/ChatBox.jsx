@@ -154,7 +154,7 @@ const ChatBox = ({ onBack }) => {
   }
 
   return (
-    <div className="flex-1 flex flex-col glass-dark rounded-3xl overflow-hidden shadow-2xl">
+    <div className="flex-1 flex flex-col relative glass-dark rounded-3xl overflow-hidden shadow-2xl">
       {/* Chat Header */}
       <div className="h-16 px-4 border-b border-white/8 flex items-center justify-between glass-dark">
         <div className="flex items-center gap-3">
@@ -280,7 +280,7 @@ const ChatBox = ({ onBack }) => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 pb-24 lg:pb-4">
+      <div className="flex-1 overflow-y-auto px-4 py-4 pb-20">
         {loading ? (
           <div className="flex items-center justify-center h-full">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
