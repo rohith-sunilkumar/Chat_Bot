@@ -142,7 +142,7 @@ const ChatPage = () => {
 
             {/* Chat Area */}
             <div className={`${showMobileChat ? 'flex' : 'hidden'
-              } lg:flex flex-1 lg:my-4 ml-0`}>
+              } lg:flex flex-1 lg:my-4 lg:ml-0 w-full`}>
               <ChatBox onBack={handleBackToList} />
             </div>
           </>
