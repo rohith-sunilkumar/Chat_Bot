@@ -128,7 +128,7 @@ const ChatPage = () => {
           <>
             {/* Conversations List */}
             <div className={`${showMobileChat ? 'hidden' : 'flex'
-              } lg:flex flex-col w-full lg:w-96 glass-dark m-4 rounded-3xl overflow-hidden panel-separator`}>
+              } lg:flex flex-col w-full lg:w-96 glass-dark lg:m-4 lg:rounded-3xl overflow-hidden panel-separator`}>
               {/* Search Bar */}
               <div className="p-4 border-b border-white/5">
                 <SearchBar />
