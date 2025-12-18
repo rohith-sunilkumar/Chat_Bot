@@ -156,7 +156,7 @@ const ChatBox = ({ onBack }) => {
   return (
     <div className="flex-1 flex flex-col relative glass-dark lg:rounded-3xl overflow-hidden shadow-2xl">
       {/* Chat Header */}
-      <div className="h-16 px-4 border-b border-white/8 flex items-center justify-between glass-dark">
+      <div className="sticky top-0 h-16 px-4 border-b border-white/8 flex items-center justify-between glass-dark z-10">
         <div className="flex items-center gap-3">
           {/* Back button for mobile */}
           <button
