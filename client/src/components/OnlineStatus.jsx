@@ -135,77 +135,80 @@ const ContactsView = ({ onStartChat }) => {
         <p className="text-gray-600 text-sm">Manage your contacts and start new conversations</p>
       </div>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        {/* Total Conversations */}
-        <div className="glass-dark p-6 rounded-2xl hover:bg-white/5 transition-all">
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="p-2 bg-blue-500/20 rounded-lg">
-              <MessageCircle className="h-6 w-6 text-blue-400" />
+      {/* Main content wrapper with flex-col-reverse on mobile */}
+      <div className="flex flex-col-reverse lg:flex-col">
+        {/* Statistics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          {/* Total Conversations */}
+          <div className="glass-dark p-6 rounded-2xl hover:bg-white/5 transition-all">
+            <div className="flex items-center space-x-3 mb-2">
+              <div className="p-2 bg-blue-500/20 rounded-lg">
+                <MessageCircle className="h-6 w-6 text-blue-400" />
+              </div>
             </div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">{conversations.length}</div>
+            <div className="text-sm text-gray-600">Total Conversations</div>
           </div>
-          <div className="text-3xl font-bold text-gray-900 mb-1">{conversations.length}</div>
-          <div className="text-sm text-gray-600">Total Conversations</div>
+
+          {/* Contacts */}
+          <div className="glass-dark p-6 rounded-2xl hover:bg-white/5 transition-all">
+            <div className="flex items-center space-x-3 mb-2">
+              <div className="p-2 bg-purple-500/20 rounded-lg">
+                <Users className="h-6 w-6 text-purple-400" />
+              </div>
+            </div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">{totalContacts}</div>
+            <div className="text-sm text-gray-600">Contacts</div>
+          </div>
+
+          {/* Group Chats */}
+          <div className="glass-dark p-6 rounded-2xl hover:bg-white/5 transition-all">
+            <div className="flex items-center space-x-3 mb-2">
+              <div className="p-2 bg-green-500/20 rounded-lg">
+                <UserCheck className="h-6 w-6 text-green-400" />
+              </div>
+            </div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">{groupChatsCount}</div>
+            <div className="text-sm text-gray-600">Group Chats</div>
+          </div>
         </div>
 
-        {/* Contacts */}
-        <div className="glass-dark p-6 rounded-2xl hover:bg-white/5 transition-all">
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="p-2 bg-purple-500/20 rounded-lg">
-              <Users className="h-6 w-6 text-purple-400" />
-            </div>
+        {/* Search */}
+        <div className="flex space-x-2 mb-6">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              placeholder="Search by name or email..."
+              className="w-full pl-10 pr-10 py-2.5 glass-dark text-gray-900 placeholder-gray-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-sm"
+            />
+            {searchInput && (
+              <button
+                onClick={handleClearSearch}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
           </div>
-          <div className="text-3xl font-bold text-gray-900 mb-1">{totalContacts}</div>
-          <div className="text-sm text-gray-600">Contacts</div>
+          <button
+            onClick={handleSearch}
+            disabled={!searchInput.trim() || searching}
+            className="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white text-sm font-medium transition-colors flex items-center space-x-2"
+          >
+            {searching ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+            ) : (
+              <Search className="h-4 w-4" />
+            )}
+            <span>Search</span>
+          </button>
         </div>
-
-        {/* Group Chats */}
-        <div className="glass-dark p-6 rounded-2xl hover:bg-white/5 transition-all">
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="p-2 bg-green-500/20 rounded-lg">
-              <UserCheck className="h-6 w-6 text-green-400" />
-            </div>
-          </div>
-          <div className="text-3xl font-bold text-gray-900 mb-1">{groupChatsCount}</div>
-          <div className="text-sm text-gray-600">Group Chats</div>
-        </div>
-      </div>
-
-      {/* Search */}
-      <div className="flex space-x-2 mb-6">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <input
-            type="text"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-            placeholder="Search by name or email..."
-            className="w-full pl-10 pr-10 py-2.5 glass-dark text-gray-900 placeholder-gray-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-sm"
-          />
-          {searchInput && (
-            <button
-              onClick={handleClearSearch}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          )}
-        </div>
-        <button
-          onClick={handleSearch}
-          disabled={!searchInput.trim() || searching}
-          className="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-white text-sm font-medium transition-colors flex items-center space-x-2"
-        >
-          {searching ? (
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-          ) : (
-            <Search className="h-4 w-4" />
-          )}
-          <span>Search</span>
-        </button>
       </div>
 
       {/* Contacts List */}
