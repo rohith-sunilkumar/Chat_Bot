@@ -66,7 +66,7 @@ const MessageInput = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 border-t border-white/10 px-4 py-3 bg-white/95 lg:bg-black/30 backdrop-blur-xl z-40">
+    <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 border-t-2 border-gray-200 lg:border-white/20 px-4 py-3 bg-white/95 lg:bg-black/30 backdrop-blur-xl z-40 shadow-lg">
       <div className="flex items-center gap-3">
         <button
           type="button"
